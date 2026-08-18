@@ -1,0 +1,28 @@
+# Build outputs
+target/
+backend/target/
+frontend/dist/
+backend/src/main/resources/static/assets/
+
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Archives & Binaries
+*.jar
+*.war
+*.zip
+backend/*.zip
+backend/application.jar
+
+# Database files
+backend/data/
+*.mv.db
+*.trace.db
+
+# IDE & OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+*.log

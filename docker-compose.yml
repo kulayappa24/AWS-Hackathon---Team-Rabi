@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: sbg_portal_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: sbg_member_portal
+      POSTGRES_USER: sbg_admin
+      POSTGRES_PASSWORD: sbg_secure_password_2026
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sbg_admin -d sbg_member_portal"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
